@@ -1,0 +1,28 @@
+default:
+    extensions:
+        Behat\MinkExtension:
+            base_url: http://localhost:8000/
+            default_session: symfony
+            javascript_session: chrome
+            sessions:
+                symfony:
+                    symfony2: ~
+                chrome:
+                    selenium2:
+                        wd_host: "http://127.0.0.1:4444/wd/hub"
+                        browser: chrome
+                        capabilities:
+                            browserName: chrome
+                            browser: chrome
+                            version: ""
+                            chrome:
+                                switches:
+                                    - "start-fullscreen"
+                                    - "start-maximized"
+                                    - "no-sandbox"
+            show_auto: false
+        SensioLabs\Behat\PageObjectExtension:
+            namespaces:
+                page: [App\Behat\Page]
+        Behat\Symfony2Extension: ~
+        FriendsOfBehat\PerformanceExtension: ~t

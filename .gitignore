@@ -1,17 +1,68 @@
-/.web-server-pid
-/app/config/parameters.yml
-/build/
-/phpunit.xml
-/var/*
-!/var/cache
+### Symfony ###
+
+# Wiki
+app/Resources/wiki
+
+# Cache and logs (Symfony2)
+/app/cache/*
+/app/logs/*
+!app/cache/.gitkeep
+!app/logs/.gitkeep
+
+# Email spool folder
+/app/spool/*
+
+# Cache, session files and logs (Symfony3)
 /var/cache/*
-!var/cache/.gitkeep
-!/var/logs
 /var/logs/*
-!var/logs/.gitkeep
-!/var/sessions
 /var/sessions/*
+/var/spool/*
+!var/cache/.gitkeep
+!var/logs/.gitkeep
 !var/sessions/.gitkeep
-!var/SymfonyRequirements.php
+!var/spool/.gitkeep
+
+# Parameters
+/app/config/parameters.yml
+/app/config/parameters.ini
+
+# Managed by Composer
+/app/bootstrap.php.cache
+/var/bootstrap.php.cache
+/bin/*
+!bin/console
+!bin/symfony_requirements
 /vendor/
+
+# Assets and user uploads
+/web/assets/
+/web/assetic/
 /web/bundles/
+/web/uploads/
+/web/css/
+/web/js/
+
+# PHPUnit
+/app/phpunit.xml
+/phpunit.xml
+
+# Build
+var/build/*
+!var/build/.gitkeep
+
+# Composer PHAR
+/composer.phar
+
+# Propel ORM
+**/Model/Base/*
+**/Model/Map/*
+app/propel/sql/
+
+# Composer template
+.idea
+
+# Ansible
+vagrant/ansible/playbook.retry
+
+# Vagrant
+vagrant/.vagrant
