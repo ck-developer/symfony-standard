@@ -1,0 +1,38 @@
+---
+nginx_remove_default_vhost: true
+php_webserver_daemon: nginx
+php_enable_php_fpm: true
+php_fpm_daemon: php7.0-fpm
+
+mysql_root_password: root
+
+nginx_worker_connections: 1024
+
+nginx_vhosts:
+    -
+        root: "/var/www/symfony/web"
+        server_name: "www.symfony.dev admin.symfony.dev api.symfony.dev"
+        index: "index.html index.htm index.php"
+        extra_parameters: |-
+            location / {
+                try_files $uri @rewriteapp;
+            }
+
+            location @rewriteapp {
+                rewrite ^(.*)$ /app.php/$1 last;
+            }
+
+            location ~ ^/(app|app_dev|config)\.php(/|$) {
+                fastcgi_pass 127.0.0.1:9000;
+                fastcgi_split_path_info ^(.+\.php)(/.*)$;
+                include fastcgi_params;
+                fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+                fastcgi_param DOCUMENT_ROOT $realpath_root;
+                fastcgi_param VAGRANT vagrant;
+            }
+
+            location ~ \.php$ {
+                return 404;
+            }
+
+selenium_version: "3.0.1"

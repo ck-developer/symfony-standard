@@ -1,0 +1,16 @@
+---
+- name: Install Symfony Server
+  hosts: all
+  gather_facts: yes
+
+  vars_files:
+    - vars/dev.yml
+
+  roles:
+    - ../roles/firewall
+    - ../roles/mysql
+    - ../roles/php
+    - ../roles/composer
+    - ../roles/nginx
+    - ../roles/java
+    - ../roles/selenium

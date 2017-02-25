@@ -1,0 +1,52 @@
+---
+php_webserver_daemon: nginx
+php_enable_php_fpm: true
+php_enablerepo: "remi,remi-php71"
+php_packages:
+    - ImageMagick
+    - php
+    - php-cli
+    - php-common
+    - php-gd
+    - php-imap
+    - php-ldap
+    - php-mbstring
+    - php-pdo
+    - php-pear
+    - php-pecl-apc
+    - php-xml
+    - php-xmlrpc
+    - php-fpm
+    - php-zip
+    - php-curl
+
+mysql_root_password: root
+mysql_enablerepo: remi
+
+nginx_worker_connections: 1024
+
+nginx_vhosts:
+    -
+        root: "/var/www/website/web"
+        server_name: "www.website.dev admin.website.dev api.website.dev"
+        index: "index.html index.htm index.php"
+        extra_parameters: |-
+            location / {
+                try_files $uri @rewriteapp;
+            }
+
+            location @rewriteapp {
+                rewrite ^(.*)$ /app.php/$1 last;
+            }
+
+            location ~ ^/(app|app_dev|config)\.php(/|$) {
+                fastcgi_pass 127.0.0.1:9000;
+                fastcgi_split_path_info ^(.+\.php)(/.*)$;
+                include fastcgi_params;
+                fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+                fastcgi_param DOCUMENT_ROOT $realpath_root;
+            }
+
+            location ~ \.php$ {
+                return 404;
+            }
