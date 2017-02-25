@@ -1,33 +1,24 @@
 ### Symfony ###
 
-# Wiki
-app/Resources/wiki
-
-# Cache and logs (Symfony2)
-/app/cache/*
-/app/logs/*
-!app/cache/.gitkeep
-!app/logs/.gitkeep
-
 # Email spool folder
-/app/spool/*
+/var/spool/*
+!var/spool/.gitkeep
+
+# Web Server PID
+.web-server-pid
 
 # Cache, session files and logs (Symfony3)
 /var/cache/*
 /var/logs/*
 /var/sessions/*
-/var/spool/*
 !var/cache/.gitkeep
 !var/logs/.gitkeep
 !var/sessions/.gitkeep
-!var/spool/.gitkeep
 
 # Parameters
 /app/config/parameters.yml
-/app/config/parameters.ini
 
 # Managed by Composer
-/app/bootstrap.php.cache
 /var/bootstrap.php.cache
 /bin/*
 !bin/console
@@ -43,22 +34,14 @@ app/Resources/wiki
 /web/js/
 
 # PHPUnit
-/app/phpunit.xml
-/phpunit.xml
-
-# Build
 var/build/*
 !var/build/.gitkeep
+/phpunit.xml
 
 # Composer PHAR
 /composer.phar
 
-# Propel ORM
-**/Model/Base/*
-**/Model/Map/*
-app/propel/sql/
-
-# Composer template
+# IntelliJ IDEA
 .idea
 
 # Ansible

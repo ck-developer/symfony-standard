@@ -1,0 +1,3 @@
+app_hello:
+    resource: '@AppHelloBundle/Controller/'
+    type: annotation
